@@ -8,24 +8,19 @@ from time import sleep
 from imutils.video import VideoStream
 import imutils
 
+# Функция для корректной работы onvif
+def zeep_pythonvalue(self, xmlvalue):
+	return xmlvalue
+zeep.xsd.simple.AnySimpleType.pythonvalue = zeep_pythonvalue
+
 # Camera connection
 video_capture = VideoStream(src="rtsp://192.168.15.43:554/Streaming/Channels/1").start()
 
 face_locations = []
 i = 0
-
 cam = ONVIFCamera('192.168.15.43', '80', 'admin', 'Supervisor')
-
-def zeep_pythonvalue(self, xmlvalue):
-	return xmlvalue
-
-zeep.xsd.simple.AnySimpleType.pythonvalue = zeep_pythonvalue
-
-
 media = cam.create_media_service()
-
 ptz = cam.create_ptz_service()
-
 token = media.GetProfiles()[0].token
 print("token", token)
 
@@ -61,6 +56,7 @@ heightSafeMax = int(height*0.5 + safeZy)
 a = ((widthSafeMin * 0.2) / (width - widthSafeMax)) 
 
 # Camera motion function
+# Функция рассчитывает движение камеры в зависимости от координат центра лица на полученном кадре
 # ptz - объект-сервис камеры для ее движения
 # request - переменная для значений скорости
 # x, y - численные значения координат центра лица человека по x и y
