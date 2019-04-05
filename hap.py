@@ -63,7 +63,7 @@ a = ((widthSafeMin * 0.2) / (width - widthSafeMax))
 # width - численное значение ширины всего кадра
 # height - численное значение высоты всего кадра
 # timeout - численное значение задержки после обработки одного кадра
-def mov_to_face(ptz, request, x, y, width, height, timeout=0):
+def mov_to_face(ptz, request, x, y, width, height, speed_kof = 1, timeout=0):
 
     if (x <= (widthSafeMax) and x >= (widthSafeMin)):
         request['Velocity']['PanTilt']['x'] = 0
@@ -127,7 +127,7 @@ while True:
 
         x = int(left + (right - left) / 2)
         y = int(top + (bottom - top) / 2)
-        mov_to_face(ptz, req, x, y, width, height, 0)
+        mov_to_face(ptz, req, x, y, width, height, 0.5, 0)
 
         # Draw rectangle over the face
         cv2.rectangle(frame, (left, top), (right, bottom), (255,0,0), 2)
