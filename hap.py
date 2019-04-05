@@ -62,7 +62,8 @@ a = ((widthSafeMin * 0.2) / (width - widthSafeMax))
 # x, y - численные значения координат центра лица человека по x и y
 # width - численное значение ширины всего кадра
 # height - численное значение высоты всего кадра
-def mov_to_face(ptz, request, x, y, width, height):
+# timeout - численное значение задержки после обработки одного кадра
+def mov_to_face(ptz, request, x, y, width, height, timeout=0):
 
     if (x <= (widthSafeMax) and x >= (widthSafeMin)):
         request['Velocity']['PanTilt']['x'] = 0
@@ -98,6 +99,7 @@ def mov_to_face(ptz, request, x, y, width, height):
         request['Velocity']['PanTilt']['x'] = 0.2 * zoomMultiplier * round(((x - widthSafeL) / (width - widthSafeL)), 2)
         print("between = ", request['Velocity']['PanTilt']['x'])
     ptz.ContinuousMove(request)
+    sleep(timeout)
     
 
 # Frame processing 
@@ -125,7 +127,7 @@ while True:
 
         x = int(left + (right - left) / 2)
         y = int(top + (bottom - top) / 2)
-        mov_to_face(ptz, req, x, y, width, height, 0.5, 0)
+        mov_to_face(ptz, req, x, y, width, height, 0)
 
         # Draw rectangle over the face
         cv2.rectangle(frame, (left, top), (right, bottom), (255,0,0), 2)
