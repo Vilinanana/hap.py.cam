@@ -20,3 +20,6 @@ Installation units:
 - Imutils
 - Face_recognition https://github.com/ageitgey/face_recognition
 
+Launch:
+- Clone this repository
+- Run hap.py in the terminal
