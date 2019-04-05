@@ -61,7 +61,8 @@ heightSafeMax = int(height*0.5 + safeZy)
 a = ((widthSafeMin * 0.2) / (width - widthSafeMax)) 
 
 # Camera motion function
-def mov_to_face(ptz, request, x, y, width, height, speed_kof = 1, timeout=0):
+# 
+def mov_to_face(ptz, request, x, y, width, height):
 
     if (x <= (widthSafeMax) and x >= (widthSafeMin)):
         request['Velocity']['PanTilt']['x'] = 0
@@ -97,7 +98,7 @@ def mov_to_face(ptz, request, x, y, width, height, speed_kof = 1, timeout=0):
         request['Velocity']['PanTilt']['x'] = 0.2 * zoomMultiplier * round(((x - widthSafeL) / (width - widthSafeL)), 2)
         print("between = ", request['Velocity']['PanTilt']['x'])
     ptz.ContinuousMove(request)
-    sleep(timeout)
+    
 
 # Frame processing 
 while True:
