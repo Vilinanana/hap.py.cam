@@ -145,6 +145,7 @@ while True:
     cv2.rectangle(frame, (widthSafeMinR, heightSafeMin), (widthSafeMaxR, heightSafeMax), (0,255,0), 2)
     
     # Display the resulting image
+    # Чтобы отключить отображение, закомментируйте эту строку
     cv2.imshow('Video', frame)
 
     # Hit 'q' on the keyboard to quit!
