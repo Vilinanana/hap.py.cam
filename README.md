@@ -23,4 +23,6 @@ Installation units:
 
 Launch:
 - Clone this repository
-- Run hap.py in the terminal
+- Run hap.py for 2 thirds
+- Run hap_right.py for the right third
+- Run hap_left.py for the left third
