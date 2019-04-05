@@ -61,7 +61,11 @@ heightSafeMax = int(height*0.5 + safeZy)
 a = ((widthSafeMin * 0.2) / (width - widthSafeMax)) 
 
 # Camera motion function
-# 
+# ptz - объект-сервис камеры для ее движения
+# request - переменная для значений скорости
+# x, y - численные значения координат центра лица человека по x и y
+# width - численное значение ширины всего кадра
+# height - численное значение высоты всего кадра
 def mov_to_face(ptz, request, x, y, width, height):
 
     if (x <= (widthSafeMax) and x >= (widthSafeMin)):
